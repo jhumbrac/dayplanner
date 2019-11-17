@@ -25,8 +25,19 @@ var dayLabel = $('<label>').attr('for', 'dayInput').text('Which day?');
 var inputValue;
 var timeValue;
 var saveBtn = $('<button>').attr('id', 'saveBtn').attr('class', 'cta').text('Save');
+var interval;
+
+var clockDisplay = $('<h2>').attr('id', 'clockDisplay');
+
+function timer() {
+    interval = setInterval(function(){
+        clockDisplay.text( moment().format('dddd, h:mm:ss a') );
+    }, 1000)
+}
+timer();
 
 // DOM
+$('body').prepend(clockDisplay).text(timer);
 $('body').prepend(plusBtn);
 $('body').prepend(entryForm);
 entryForm.append(inputContainer, dayContainer, timeContainer, saveBtn);
