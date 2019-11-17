@@ -77,7 +77,7 @@ $(saveBtn).on('click', function(event){
     event.preventDefault();
     inputValue = $('<li>').text(userInput.val().trim());
     timeValue = timeInput.val();
-    var dayChoice = dayInput.val().toLowerCase();
+    var dayChoice = dayInput.val().trim().toLowerCase();
     switch (dayChoice) {
         case 'monday':
             dayValue = 'm';
