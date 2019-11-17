@@ -1,6 +1,6 @@
 var hours = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
-var workDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-var dayValue = ['m', 't', 'w', 'r', 'f'];
+var workDays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+var dayValue = ['su', 'm', 't', 'w', 'r', 'f', 'sa'];
 var time;
 var date;
 var past; // style with css
@@ -26,12 +26,50 @@ var inputValue;
 var timeValue;
 var saveBtn = $('<button>').attr('id', 'saveBtn').attr('class', 'cta').text('Save');
 var interval;
+var timerUlData;
+var ulData;
 
 var clockDisplay = $('<h2>').attr('id', 'clockDisplay');
 
 function timer() {
     interval = setInterval(function(){
         clockDisplay.text( moment().format('dddd, h:mm:ss a') );
+        var timerDay = moment().format('dddd').toLowerCase();
+        var timerDayValue;
+        var timerHour = moment().format('h');
+         
+        switch (timerDay) {
+            case 'monday':
+                timerDayValue = 'm';
+                break;
+            case 'tuesday':
+                timerDayValue = 't';
+                break;
+            case 'wednesday':
+                timerDayValue = 'w';
+                break;
+            case 'thursday':
+                timerDayValue = 'r';
+                break;
+            case 'friday':
+                timerDayValue = 'f';
+                break;
+            case 'sunday':
+                timerDayValue = 'su';
+                break;
+            case 'saturday':
+                timerDayValue = 'sa';
+                break;
+            default:
+                alert('Please select a work day');
+        }
+        timerUlData = timerDayValue + timerHour;
+        // if (timerUlData === ulData) {
+        //     console.log( 'true');
+        // } else {
+        //     console.log( ' false ');
+        //     console.log( timerUlData, ulData);
+        // }
     }, 1000)
 }
 timer();
@@ -79,6 +117,9 @@ $(saveBtn).on('click', function(event){
     timeValue = timeInput.val();
     var dayChoice = dayInput.val().trim().toLowerCase();
     switch (dayChoice) {
+        case 'sunday':
+            dayValue = 'su';
+            break;
         case 'monday':
             dayValue = 'm';
             break;
@@ -94,9 +135,11 @@ $(saveBtn).on('click', function(event){
         case 'friday':
             dayValue = 'f';
             break;
+        case 'saturday':
+            dayValue = 'sa';
+            break;
         default:
             alert('Please select a work day');
-
     }
     ulData = $(`[data-hour="${dayValue}${timeValue}"`);
     ulData.append(inputValue);
