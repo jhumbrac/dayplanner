@@ -1,4 +1,6 @@
 var hours = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm'];
+var workDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
+var dayValue = ['m', 't', 'w', 'r', 'f'];
 var time;
 var date;
 var past; // style with css
@@ -6,7 +8,7 @@ var present;
 var future;
 
 var calendar = $('<div>').attr('id', 'calendar');
-var currentDay = $('<h2>').attr('id', 'currentDay').text('Monday');
+var calendarDay = $('<div>').attr('class', 'calendarDay')
 
 // to do container
 var plusBtn = $('<button>').attr('id','plusBtn').text('+');
@@ -23,7 +25,7 @@ var dayLabel = $('<label>').attr('for', 'dayInput').text('Which day?');
 var inputValue;
 var timeValue;
 var saveBtn = $('<button>').attr('id', 'saveBtn').attr('class', 'cta').text('Save');
-var dayValue = 'm';
+
 // DOM
 $('body').prepend(plusBtn);
 $('body').prepend(entryForm);
@@ -33,14 +35,22 @@ dayContainer.append(dayInput, dayLabel);
 timeContainer.append(timeInput, timeLabel );
 
 $('body').prepend(calendar);
-calendar.append(currentDay);
-hours.forEach(hour=>{
-    var a = $('<div>').attr('id', `div${hour}`);
-    var b = $('<h3>').text(hour).attr('class', 'hourHeader');
-    var c = $('<ul>').attr('data-hour', dayValue + parseInt(hour));
-    $(calendar).append(a);
-    a.append(b, c);
-});
+
+for ( var i = 0; i < workDays.length; i++ ){
+    var currentDay = $('<h2>').attr('id', 'currentDay').text(workDays[i]);
+
+    calendarDay.append(currentDay);
+    hours.forEach(hour=>{
+        var a = $('<div>').attr('id', `div${hour}`);
+        var b = $('<h3>').text(hour).attr('class', 'hourHeader');
+        var c = $('<ul>').attr('data-hour', dayValue[i] + parseInt(hour));
+        $(calendarDay).append(a);
+        a.append(b, c);
+    });
+}
+calendar.append(calendarDay);
+
+
 function resetForm() {
     userInput.val('');
     timeInput.val('');
@@ -56,6 +66,27 @@ $(saveBtn).on('click', function(event){
     event.preventDefault();
     inputValue = $('<li>').text(userInput.val().trim());
     timeValue = timeInput.val();
+    var dayChoice = dayInput.val().toLowerCase();
+    switch (dayChoice) {
+        case 'monday':
+            dayValue = 'm';
+            break;
+        case 'tuesday':
+            dayValue = 't';
+            break;
+        case 'wednesday':
+            dayValue = 'w';
+            break;
+        case 'thursday':
+            dayValue = 'r';
+            break;
+        case 'friday':
+            dayValue = 'f';
+            break;
+        default:
+            alert('Please select a work day');
+
+    }
     ulData = $(`[data-hour="${dayValue}${timeValue}"`);
     ulData.append(inputValue);
     $('body').toggleClass('modal');

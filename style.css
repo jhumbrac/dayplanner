@@ -20,7 +20,7 @@ h2 {
 	font-size: 4em;
 	text-transform: uppercase;
 }
-#calendar > div {
+.calendarDay > div {
 	background: #8ee4af;
 	border: 1px solid #05386b;
 	min-height: 6em;
