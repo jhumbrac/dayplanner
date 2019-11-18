@@ -54,7 +54,7 @@ h2 {
 .currentTime {
     background: #379683;
 }
-.currentTime .headerHour {
+.currentTime .hourHeader {
     color:#edf5e1;
 }
 .plusBtn {
@@ -162,7 +162,7 @@ input:valid + label {
     opacity:.25;
 }
 .modal #plusBtn {
-    transform:rotate(405deg);
+    transform:rotate(225deg);
 }
 #clockDisplay {
     position: absolute;
