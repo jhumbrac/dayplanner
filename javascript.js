@@ -11,7 +11,9 @@ var calendar = $('<div>').attr('id', 'calendar');
 var calendarDay = $('<div>').attr('class', 'calendarDay')
 
 // to do container
-var plusBtn = $('<button>').attr('id','plusBtn').text('+');
+var plusBtn = $('<button>').attr('id','plusBtn');
+var plusSpan = $('<span>').text('+');
+plusBtn.append(plusSpan);
 var entryForm = $('<form>').attr('id', 'entryForm');
 var inputContainer = $('<div>');
 var timeContainer = $('<div>');
