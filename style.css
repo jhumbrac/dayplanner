@@ -163,6 +163,7 @@ input:valid + label {
 }
 .modal #plusBtn {
     transform:rotate(225deg);
+    box-shadow: -10px 0px 20px rgba(0,0,0,0.19), -6px 0px 6px rgba(0,0,0,0.23);
 }
 #clockDisplay {
     position: absolute;
