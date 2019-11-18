@@ -52,8 +52,10 @@ h2 {
     margin-top:.5em;
 }
 .currentTime {
-	color: #fff;
-	background: #379683;
+    background: #379683;
+}
+.currentTime .headerHour {
+    color:#edf5e1;
 }
 .plusBtn {
     background: none;
