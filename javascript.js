@@ -64,6 +64,8 @@ function timer() {
                 alert('Please select a work day');
         }
         timerUlData = timerDayValue + timerHour;
+        $('[data-hour]').attr('class', '');
+        $(`[data-hour=${timerUlData}]`).attr('class', 'currentTime');
         // if (timerUlData === ulData) {
         //     console.log( 'true');
         // } else {
@@ -86,13 +88,13 @@ timeContainer.append(timeInput, timeLabel );
 $('body').prepend(calendar);
 
 for ( var i = 0; i < workDays.length; i++ ){
-    var currentDay = $('<h2>').attr('id', 'currentDay').text(workDays[i]);
+    var currentDay = $('<h2>').text(workDays[i]);
 
     calendarDay.append(currentDay);
     hours.forEach(hour=>{
-        var a = $('<div>').attr('id', `div${hour}`);
+        var a = $('<div>').attr('id', `${workDays[i]}div${hour}`).attr('data-hour', dayValue[i] + parseInt(hour));
         var b = $('<h3>').text(hour).attr('class', 'hourHeader');
-        var c = $('<ul>').attr('data-hour', dayValue[i] + parseInt(hour));
+        var c = $('<ul>');;
         $(calendarDay).append(a);
         a.append(b, c);
     });
@@ -142,7 +144,7 @@ $(saveBtn).on('click', function(event){
             alert('Please select a work day');
     }
     ulData = $(`[data-hour="${dayValue}${timeValue}"`);
-    ulData.append(inputValue);
+    $(ulData).children('ul').append(inputValue);
     $('body').toggleClass('modal');
     resetForm();
     // save to local storage

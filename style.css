@@ -20,13 +20,6 @@ h2 {
 	font-size: 4em;
 	text-transform: uppercase;
 }
-.calendarDay > div {
-	background: #8ee4af;
-	border: 1px solid #05386b;
-	min-height: 6em;
-	padding: 1em;
-	position: relative;
-}
 .hourHeader {
     float: left;
     font-weight: 700;
@@ -35,6 +28,16 @@ h2 {
     width: 4em;
 }
 [data-hour] {
+	background: #8ee4af;
+	border: 1px solid #05386b;
+	min-height: 6em;
+	padding: 1em;
+	position: relative;
+}
+.currentTime ~ [data-hour], .currentTime {
+	display: block;
+}
+[data-hour] ul {
     overflow:auto;
 }
 [data-hour] li {
@@ -47,6 +50,10 @@ h2 {
 }
 [data-hour] li + li {
     margin-top:.5em;
+}
+.currentTime li {
+	color: #fff;
+	background: #379683;
 }
 .plusBtn {
     background: none;
